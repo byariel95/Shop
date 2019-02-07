@@ -24,7 +24,7 @@ namespace Shop.Web.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "pagina de contacto.";
 
             return View();
         }
