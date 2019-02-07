@@ -17,14 +17,14 @@ namespace Shop.Web.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Acerca De";
 
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "pagina de contacto.";
+            ViewData["Message"] = "Pagina De Contacto.";
 
             return View();
         }
