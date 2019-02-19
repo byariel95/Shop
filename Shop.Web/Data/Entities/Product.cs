@@ -4,7 +4,7 @@ namespace Shop.Web.Data.Entities
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class Product
+    public class Product : IEntity
     {
         public int Id { get; set; }
         [MaxLength(50, ErrorMessage = "El Campo {0} Solo Acepta {1} Caracteres")]
