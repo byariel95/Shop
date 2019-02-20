@@ -48,8 +48,10 @@ namespace Shop.Web
             });
 
             services.AddTransient<SeedDb>();
-            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IUserHelper, UserHelper>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
+
 
             services.Configure<CookiePolicyOptions>(options =>
             {
