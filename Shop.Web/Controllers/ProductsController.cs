@@ -12,6 +12,7 @@ namespace Shop.Web.Controllers
     using Models;
     using System.IO;
     using System;
+    using System.Linq;
 
     public class ProductsController : Controller
     {
@@ -27,7 +28,7 @@ namespace Shop.Web.Controllers
         // GET: Products
         public IActionResult Index()
         {
-            return View(this.productRepository.GetAll());
+            return View(this.productRepository.GetAll().OrderBy(p=>p.Name));
         }
 
         // GET: Products/Details/5
@@ -165,10 +166,9 @@ namespace Shop.Web.Controllers
 
                         path = $"~/images/Products/{view.ImageFile.FileName}";
                     }
-
+                    var product = this.ToProduct(view, path);
                     // TODO: de momento cambiar por usuario logeado
                     view.User = await this.userHelper.GetUserByEmailAsync("byron_1995_@hotmail.com");
-                    var product = this.ToProduct(view, path);
                     await this.productRepository.UpdateAsync(product);
                  
                 }
@@ -185,8 +185,7 @@ namespace Shop.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(view
-                );
+            return View(view);
         }
 
         // GET: Products/Delete/5
