@@ -25,6 +25,7 @@
                 	Text="{Binding Password}">
                 </Entry>
                 <Button
+                    
                 	Command="{Binding LoginCommand}"
                 	Text="Login">
                 </Button>
