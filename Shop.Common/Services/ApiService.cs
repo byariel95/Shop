@@ -1,5 +1,7 @@
 ﻿
 
+
+
 namespace Shop.Common.Services
 {
     using System;

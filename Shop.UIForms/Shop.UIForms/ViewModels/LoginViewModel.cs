@@ -5,6 +5,7 @@
 namespace Shop.UIForms.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
+    using Shop.UIForms.Views;
     using System.Windows.Input;
     using Xamarin.Forms;
     public class LoginViewModel
@@ -36,7 +37,9 @@ namespace Shop.UIForms.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Alert", "Your Password or User are incorrect", "Aceptar");
                 return;
             }
-            await Application.Current.MainPage.DisplayAlert("Yeah!", "Amazing!!", "ok");
+            // await Application.Current.MainPage.DisplayAlert("Yeah!", "Amazing!!", "ok");
+            MainViewModel.GetInstance().Products = new ProductsViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new ProductsPage());
 
         }
     }

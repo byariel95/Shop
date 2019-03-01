@@ -12,10 +12,22 @@ namespace Shop.UIForms.ViewModels
     using Shop.Common.Services;
     using Xamarin.Forms;
 
-    public class ProductsViewModel
+    public class ProductsViewModel: BaseViewModel
     {
         private ApiService apiService;
-        public ObservableCollection<Product> Products { get; set; }
+        private ObservableCollection<Product> products;
+        private bool isRefreshing;
+        public ObservableCollection<Product> Products
+        {
+            get { return this.products; }
+            set { this.SetValue(ref this.products, value); }
+        }
+        public bool IsRefreshing
+        {
+            get { return this.isRefreshing; }
+            set { this.SetValue(ref this.isRefreshing, value); }
+        }
+
         public ProductsViewModel()
         {
             this.apiService = new ApiService();
@@ -24,11 +36,13 @@ namespace Shop.UIForms.ViewModels
 
         private async void LoadProducts()
         {
+            this.IsRefreshing = true;
             var response = await this.apiService.GetListAsync<Product>(
                 "https://shopzulu.azurewebsites.net",
                 "/api",
                 "/Products");
 
+            this.IsRefreshing =false;
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert("Error",response.Message,"Acept");
