@@ -13,7 +13,9 @@ namespace Shop.Web.Controllers
     using System.IO;
     using System;
     using System.Linq;
+    using Microsoft.AspNetCore.Authorization;
 
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly IProductRepository productRepository;
