@@ -33,7 +33,7 @@ namespace Shop.Web.Data
                     FirstName = "Ariel",
                     LastName = "Monterroso",
                     Email = "byron_1995_@hotmail.com",
-                    UserName = "byariel95",
+                    UserName = "byron_1995_@hotmail.com",
                     PhoneNumber ="54513968"
                 };
 

@@ -8,7 +8,7 @@ namespace Shop.Web.Models
     public class LoginViewModel
     {
         [Required]
-        //[EmailAddress]
+        [EmailAddress]
         public string Username { get; set; }
 
         [Required]
