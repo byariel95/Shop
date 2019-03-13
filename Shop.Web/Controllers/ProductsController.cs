@@ -13,7 +13,9 @@ namespace Shop.Web.Controllers
     using System.IO;
     using System;
     using System.Linq;
+    using Microsoft.AspNetCore.Authorization;
 
+    
     public class ProductsController : Controller
     {
         private readonly IProductRepository productRepository;
@@ -49,6 +51,8 @@ namespace Shop.Web.Controllers
             return View(product);
         }
 
+        [Authorize(Roles = "Admin")]
+
         // GET: Products/Create
         public IActionResult Create()
         {
@@ -66,23 +70,26 @@ namespace Shop.Web.Controllers
 
                 if (view.ImageFile != null && view.ImageFile.Length > 0)
                 {
+                    var guid = Guid.NewGuid().ToString();
+                    var file = $"{guid}.jpg";
+
                     path = Path.Combine(
                         Directory.GetCurrentDirectory(), 
                         "wwwroot\\images\\Products", 
-                        view.ImageFile.FileName);
+                       file);
 
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
                         await view.ImageFile.CopyToAsync(stream);
                     }
 
-                    path = $"~/images/Products/{view.ImageFile.FileName}";
+                    path = $"~/images/Products/{file}";
                 }
 
                 var product = this.ToProduct(view, path);
 
-                // TODO: de momento cambiar por usuario logeado
-                product.User = await this.userHelper.GetUserByEmailAsync("byron_1995_@hotmail.com");
+               
+                product.User = await this.userHelper.GetUserByEmailAsync(this.User.Identity.Name);
                 await this.productRepository.CreateAsync(product); 
                 return RedirectToAction(nameof(Index));
             }
@@ -105,7 +112,7 @@ namespace Shop.Web.Controllers
             };
 
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -157,18 +164,23 @@ namespace Shop.Web.Controllers
 
                     if (view.ImageFile != null && view.ImageFile.Length > 0)
                     {
-                        path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images\\Products", view.ImageFile.FileName);
+                        var guid = Guid.NewGuid().ToString();
+                        var file = $"{guid}.jpg";
+                        path = Path.Combine(
+                            Directory.GetCurrentDirectory(), 
+                            "wwwroot\\images\\Products",
+                            file);
 
                         using (var stream = new FileStream(path, FileMode.Create))
                         {
                             await view.ImageFile.CopyToAsync(stream);
                         }
 
-                        path = $"~/images/Products/{view.ImageFile.FileName}";
+                        path = $"~/images/Products/{file}";
                     }
                     var product = this.ToProduct(view, path);
-                    // TODO: de momento cambiar por usuario logeado
-                    view.User = await this.userHelper.GetUserByEmailAsync("byron_1995_@hotmail.com");
+                  
+                    product.User = await this.userHelper.GetUserByEmailAsync(this.User.Identity.Name);
                     await this.productRepository.UpdateAsync(product);
                  
                 }
@@ -187,7 +199,7 @@ namespace Shop.Web.Controllers
             }
             return View(view);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Products/Delete/5
         public async Task <IActionResult> Delete(int? id)
         {
