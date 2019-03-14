@@ -20,6 +20,7 @@ namespace Shop.Web
     using Helpers;
     using Microsoft.IdentityModel.Tokens;
     using System.Text;
+    using Shop.Web.Data.Repositories;
 
     public class Startup
     {
@@ -66,6 +67,7 @@ namespace Shop.Web
             services.AddTransient<SeedDb>();
             services.AddScoped<IUserHelper, UserHelper>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
 
 
