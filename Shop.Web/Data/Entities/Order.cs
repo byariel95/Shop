@@ -23,6 +23,10 @@ namespace Shop.Web.Data.Entities
         [Required]
         public User User { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:N0}")]
+        public int Lines { get { return this.Items == null ? 0 : this.Items.Count(); } }
+
+
         public IEnumerable<OrderDetail> Items { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:N2}")]
@@ -30,6 +34,23 @@ namespace Shop.Web.Data.Entities
 
         [DisplayFormat(DataFormatString = "{0:C2}")]
         public decimal Value { get { return this.Items == null ? 0 : this.Items.Sum(i => i.Value); } }
+
+        [Display(Name = "Order date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = false)]
+        public DateTime? OrderDateLocal
+        {
+            get
+            {
+                if (this.OrderDate == null)
+                {
+                    return null;
+                }
+
+                return this.OrderDate.ToLocalTime();
+            }
+        }
+
+        
     }
 
 }
