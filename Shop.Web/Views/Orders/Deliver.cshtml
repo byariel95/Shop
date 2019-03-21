@@ -16,8 +16,8 @@
 
             <div class="form-group">
                 <label asp-for="DeliveryDate" class="control-label"></label>
-                <div class="input-group date" data-provide="datepicker">
-                    <input type="text" asp-for="DeliveryDate" class="form-control datepicker-me" />
+                <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                    <input type="text" asp-for="DeliveryDate" class="form-control" />
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -26,7 +26,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" id="btnSave" />
                 <a asp-action="Index" class="btn btn-success">Back to List</a>
             </div>
         </form>
@@ -37,15 +37,3 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 
-<script type="text/javascript">
-        $(document).ready(function () {
-
-            $('.datepicker-me').datepicker({
-                format: 'dd-mm-yyyy'
-            });
-
-            $('.datepicker-me').val("@DateTime.Today");
-
-        });
-
-</script>﻿

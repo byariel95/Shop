@@ -13,11 +13,11 @@ namespace Shop.Web.Data.Entities
 
         [Required]
         [Display(Name = "Order date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = false)]
         public DateTime OrderDate { get; set; }
 
         [Display(Name = "Delivery date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = false)]
         public DateTime? DeliveryDate { get; set; }
 
         [Required]
@@ -36,7 +36,7 @@ namespace Shop.Web.Data.Entities
         public decimal Value { get { return this.Items == null ? 0 : this.Items.Sum(i => i.Value); } }
 
         [Display(Name = "Order date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm tt}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = false)]
         public DateTime? OrderDateLocal
         {
             get
@@ -51,6 +51,7 @@ namespace Shop.Web.Data.Entities
         }
 
         
+
     }
 
 }
