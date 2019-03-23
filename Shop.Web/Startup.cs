@@ -20,6 +20,7 @@ namespace Shop.Web
     using Helpers;
     using Microsoft.IdentityModel.Tokens;
     using System.Text;
+    using Shop.Web.Data.Repositories;
 
     public class Startup
     {
@@ -35,6 +36,8 @@ namespace Shop.Web
         {
             services.AddIdentity<User, IdentityRole>(cfg =>
             {
+                cfg.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
+                cfg.SignIn.RequireConfirmedEmail = true;
                 cfg.User.RequireUniqueEmail = true;
                 cfg.Password.RequireDigit = false;
                 cfg.Password.RequiredUniqueChars = 0;
@@ -43,6 +46,7 @@ namespace Shop.Web
                 cfg.Password.RequireUppercase = false;
                 cfg.Password.RequiredLength = 5;
             })
+            .AddDefaultTokenProviders()
             .AddEntityFrameworkStores<DataContext>();
 
                 services.AddAuthentication()
@@ -66,7 +70,11 @@ namespace Shop.Web
             services.AddTransient<SeedDb>();
             services.AddScoped<IUserHelper, UserHelper>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<IMailHelper, MailHelper>();
+
+
 
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -74,6 +82,12 @@ namespace Shop.Web
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/NotAuthorized";
+                options.AccessDeniedPath = "/Account/NotAuthorized";
             });
 
 
@@ -93,6 +107,7 @@ namespace Shop.Web
                 app.UseHsts();
             }
 
+            app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseAuthentication();
