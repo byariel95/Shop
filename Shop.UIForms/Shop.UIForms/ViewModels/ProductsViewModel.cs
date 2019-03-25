@@ -37,16 +37,25 @@ namespace Shop.UIForms.ViewModels
         private async void LoadProducts()
         {
             this.IsRefreshing = true;
-            var response = await this.apiService.GetListAsync<Product>(
-                "https://shopzulu.azurewebsites.net",
-                "/api",
-                "/Products");
 
-            this.IsRefreshing =false;
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var response = await this.apiService.GetListAsync<Product>(
+                url,
+                "/api",
+                "/Products",
+                "bearer",
+                MainViewModel.GetInstance().Token.Token);
+
+            this.isRefreshing = false;
             if (!response.IsSuccess)
             {
-                await Application.Current.MainPage.DisplayAlert("Error",response.Message,"Acept");
+                await Application.Current.MainPage.DisplayAlert(
+             "Error",
+             response.Message,
+             "Accept");
+                this.IsRefreshing = false;
                 return;
+
 
             }
             var myProducts = (List<Product>)response.Result;
