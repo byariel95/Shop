@@ -1,5 +1,4 @@
 ﻿
-
 using Shop.Common.Models;
 
 namespace Shop.UIForms.ViewModels
