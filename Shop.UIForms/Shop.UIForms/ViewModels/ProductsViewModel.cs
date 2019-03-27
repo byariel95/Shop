@@ -47,6 +47,7 @@ namespace Shop.UIForms.ViewModels
                 MainViewModel.GetInstance().Token.Token);
 
             this.isRefreshing = false;
+
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert(
