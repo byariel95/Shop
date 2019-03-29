@@ -46,7 +46,7 @@
                     VerticalOptions="CenterAndExpand">
                 </ActivityIndicator>
                 <Button
-                	BackgroundColor="#002850"
+                	BackgroundColor="#438BF7"
                 	BorderRadius="23"
                 	Command="{Binding LoginCommand}"
                 	HeightRequest="46"

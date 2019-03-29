@@ -54,7 +54,7 @@
                 	VerticalOptions="CenterAndExpand">
                 </ActivityIndicator>
                 <Button
-                	BackgroundColor="Navy"
+                	BackgroundColor="#438BF7"
                 	BorderRadius="23"
                 	Command="{Binding SaveCommand}"
                 	HeightRequest="46"

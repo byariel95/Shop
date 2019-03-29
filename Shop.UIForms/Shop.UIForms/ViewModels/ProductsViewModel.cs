@@ -1,8 +1,4 @@
 ﻿
-
-
-
-
 namespace Shop.UIForms.ViewModels
 {
     using System;

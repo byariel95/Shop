@@ -40,8 +40,6 @@ namespace Shop.UIForms.ViewModels
         {
             this.apiService = new ApiService();
             this.IsEnabled = true;
-            this.Email = "jzuluaga55@gmail.com";
-            this.Password = "123456";
             this.IsRemember = true;
 
 
@@ -50,12 +48,12 @@ namespace Shop.UIForms.ViewModels
         {
             if (string.IsNullOrEmpty(this.Email))
             {
-                await Application.Current.MainPage.DisplayAlert("Alert", "You must enter an Email", "Aceptar");
+                await Application.Current.MainPage.DisplayAlert("Alert", "You must enter an Email", "Accept");
                 return;
             }
             if (string.IsNullOrEmpty(this.Password))
             {
-                await Application.Current.MainPage.DisplayAlert("Alert", "You must enter an Password", "Aceptar");
+                await Application.Current.MainPage.DisplayAlert("Alert", "You must enter an Password", "Accept");
                 return;
             }
 

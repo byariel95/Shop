@@ -56,7 +56,7 @@
                 <StackLayout
                 	Orientation="Horizontal">
                     <Button
-                    	BackgroundColor="Navy"
+                    	BackgroundColor="#438BF7"
                     	BorderRadius="23"
                     	Command="{Binding SaveCommand}"
                     	HeightRequest="46"
@@ -66,7 +66,7 @@
                     	TextColor="White">
                     </Button>
                     <Button
-                    	BackgroundColor="Red"
+                    	BackgroundColor="#E3397A"
                     	BorderRadius="23"
                     	Command="{Binding DeleteCommand}"
                     	HeightRequest="46"
