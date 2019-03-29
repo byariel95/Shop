@@ -21,13 +21,13 @@ namespace Shop.UIForms.ViewModels
         private bool isRefreshing;
         public ObservableCollection<ProductItemViewModel> Products
         {
-            get { return this.products; }
-            set { this.SetValue(ref this.products, value); }
+            get => this.products;
+            set => this.SetValue(ref this.products, value);
         }
         public bool IsRefreshing
         {
-            get { return this.isRefreshing; }
-            set { this.SetValue(ref this.isRefreshing, value); }
+            get => this.isRefreshing;
+            set => this.SetValue(ref this.isRefreshing, value);
         }
 
         public ProductsViewModel()
@@ -56,7 +56,6 @@ namespace Shop.UIForms.ViewModels
              "Error",
              response.Message,
              "Accept");
-                this.IsRefreshing = false;
                 return;
 
 
