@@ -56,7 +56,7 @@
                 <StackLayout
                 	Orientation="Horizontal">
                     <Button
-                    	BackgroundColor="#438BF7"
+                    	BackgroundColor="#1C8DE5"
                     	BorderRadius="23"
                     	Command="{Binding SaveCommand}"
                     	HeightRequest="46"

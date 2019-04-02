@@ -79,11 +79,29 @@ namespace Shop.UIForms.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Email or password incorrect..
+        ///   Busca una cadena traducida similar a Email.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a You must enter an Email..
         /// </summary>
         public static string EmailError {
             get {
                 return ResourceManager.GetString("EmailError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter your email..
+        /// </summary>
+        public static string EmailPlaceHolder {
+            get {
+                return ResourceManager.GetString("EmailPlaceHolder", resourceCulture);
             }
         }
         
@@ -99,27 +117,63 @@ namespace Shop.UIForms.Resources {
         /// <summary>
         ///   Busca una cadena traducida similar a You must enter a product name..
         /// </summary>
-        public static string errorname {
+        public static string Errorname {
             get {
-                return ResourceManager.GetString("errorname", resourceCulture);
+                return ResourceManager.GetString("Errorname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a You must enter an Email..
+        ///   Busca una cadena traducida similar a Login.
         /// </summary>
-        public static string mustEmail {
+        public static string Login {
             get {
-                return ResourceManager.GetString("mustEmail", resourceCulture);
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Email or password incorrect..
+        /// </summary>
+        public static string LoginError {
+            get {
+                return ResourceManager.GetString("LoginError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Busca una cadena traducida similar a You must enter a password..
         /// </summary>
-        public static string mustpass {
+        public static string PasswordError {
             get {
-                return ResourceManager.GetString("mustpass", resourceCulture);
+                return ResourceManager.GetString("PasswordError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter your password..
+        /// </summary>
+        public static string PasswordPlaceHolder {
+            get {
+                return ResourceManager.GetString("PasswordPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Remember me in this device.
+        /// </summary>
+        public static string Remember {
+            get {
+                return ResourceManager.GetString("Remember", resourceCulture);
             }
         }
     }

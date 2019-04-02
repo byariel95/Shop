@@ -120,22 +120,40 @@
   <data name="Accept" xml:space="preserve">
     <value>Akzeptieren</value>
   </data>
-  <data name="EmailError" xml:space="preserve">
+  <data name="LoginError" xml:space="preserve">
     <value>E-Mail oder Passwort falsch</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Fehler</value>
   </data>
-  <data name="mustEmail" xml:space="preserve">
+  <data name="EmailError" xml:space="preserve">
     <value>Sie müssen eine E-Mail-Adresse angeben.</value>
   </data>
-  <data name="mustpass" xml:space="preserve">
+  <data name="PasswordError" xml:space="preserve">
     <value>Geben Sie ein Kennwort ein.</value>
   </data>
   <data name="Alert" xml:space="preserve">
     <value>Warnung</value>
   </data>
-  <data name="errorname" xml:space="preserve">
+  <data name="Errorname" xml:space="preserve">
     <value>Sie müssen einen Namen eingeben.</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Anmeldung:</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="EmailPlaceHolder" xml:space="preserve">
+    <value>E-Mail-Adresse eingeben</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Kennwort</value>
+  </data>
+  <data name="PasswordPlaceHolder" xml:space="preserve">
+    <value>Kennwort eingeben</value>
+  </data>
+  <data name="Remember" xml:space="preserve">
+    <value>Auf diesem Gerät merken</value>
   </data>
 </root>

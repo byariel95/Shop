@@ -7,6 +7,7 @@ namespace Shop.UIForms.ViewModels
     using Shop.Common.Helpers;
     using Shop.Common.Models;
     using Shop.Common.Services;
+    using Shop.UIForms.Helpers;
     using Shop.UIForms.Views;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -48,12 +49,12 @@ namespace Shop.UIForms.ViewModels
         {
             if (string.IsNullOrEmpty(this.Email))
             {
-                await Application.Current.MainPage.DisplayAlert("Alert", "You must enter an Email", "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Alert,Languages.EmailError, Languages.Accept);
                 return;
             }
             if (string.IsNullOrEmpty(this.Password))
             {
-                await Application.Current.MainPage.DisplayAlert("Alert", "You must enter an Password", "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Alert,Languages.PasswordError, Languages.Accept);
                 return;
             }
 
@@ -78,7 +79,7 @@ namespace Shop.UIForms.ViewModels
 
             if (!response.IsSuccess)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Email or password incorrect.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, Languages.LoginError, Languages.Accept);
                 return;
             }
 
