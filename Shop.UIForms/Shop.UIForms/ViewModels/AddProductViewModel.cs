@@ -6,6 +6,9 @@ namespace Shop.UIForms.ViewModels
     using Common.Models;
     using Common.Services;
     using GalaSoft.MvvmLight.Command;
+    using Plugin.Media;
+    using Plugin.Media.Abstractions;
+    using Shop.Common.Helpers;
     using Xamarin.Forms;
 
     public class AddProductViewModel : BaseViewModel
@@ -13,8 +16,17 @@ namespace Shop.UIForms.ViewModels
         private bool isRunning;
         private bool isEnabled;
         private readonly ApiService apiService;
+        private ImageSource imageSource;
+        private MediaFile file;
 
-        public string Image { get; set; }
+
+        public ImageSource ImageSource
+        {
+            get => this.imageSource;
+            set => this.SetValue(ref this.imageSource, value);
+        }
+
+
 
         public bool IsRunning
         {
@@ -34,10 +46,12 @@ namespace Shop.UIForms.ViewModels
 
         public ICommand SaveCommand => new RelayCommand(this.Save);
 
+        public ICommand ChangeImageCommand => new RelayCommand(this.ChangeImage);
+
         public AddProductViewModel()
         {
             this.apiService = new ApiService();
-            this.Image = "noImage";
+            this.ImageSource = "noImage";
             this.IsEnabled = true;
         }
 
@@ -65,13 +79,19 @@ namespace Shop.UIForms.ViewModels
             this.IsRunning = true;
             this.IsEnabled = false;
 
-            //TODO: Add image
+            byte[] imageArray = null;
+            if (this.file != null)
+            {
+                imageArray = FilesHelper.ReadFully(this.file.GetStream());
+            }
+
             var product = new Product
             {
                 IsAvailabe = true,
                 Name = this.Name,
                 Price = price,
-                User = new User { UserName = MainViewModel.GetInstance().UserEmail }
+                User = new User { UserName = MainViewModel.GetInstance().UserEmail },
+                ImageArray = imageArray
             };
 
             var url = Application.Current.Resources["UrlAPI"].ToString();
@@ -96,6 +116,50 @@ namespace Shop.UIForms.ViewModels
             this.IsEnabled = true;
             await App.Navigator.PopAsync();
         }
+
+        private async void ChangeImage()
+        {
+            await CrossMedia.Current.Initialize();
+
+            var source = await Application.Current.MainPage.DisplayActionSheet(
+                "Where do you take the picture?",
+                "Cancel",
+                null,
+                "From Gallery",
+                "From Camera");
+
+            if (source == "Cancel")
+            {
+                this.file = null;
+                return;
+            }
+
+            if (source == "From Camera")
+            {
+                this.file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
+                    {
+                        Directory = "Pictures",
+                        Name = "test.jpg",
+                        PhotoSize = PhotoSize.Small,
+                    }
+                );
+            }
+            else
+            {
+                this.file = await CrossMedia.Current.PickPhotoAsync();
+            }
+
+            if (this.file != null)
+            {
+                this.ImageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    return stream;
+                });
+            }
+        }
+
     }
 
 }
