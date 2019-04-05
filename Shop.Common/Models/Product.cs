@@ -7,22 +7,22 @@ namespace Shop.Common.Models
     public class Product
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("price")]
-        public long Price { get; set; }
+        public decimal Price { get; set; }
 
         [JsonProperty("imageUrl")]
         public string ImageUrl { get; set; }
 
         [JsonProperty("lastPurchase")]
-        public object LastPurchase { get; set; }
+        public DateTime? LastPurchase { get; set; }
 
         [JsonProperty("lastSale")]
-        public object LastSale { get; set; }
+        public DateTime? LastSale { get; set; }
 
         [JsonProperty("isAvailabe")]
         public bool IsAvailabe { get; set; }
@@ -34,7 +34,9 @@ namespace Shop.Common.Models
         public User User { get; set; }
 
         [JsonProperty("imageFullPath")]
-        public Uri ImageFullPath { get; set; }
+        public string ImageFullPath { get; set; }
+
+        public byte[] ImageArray { get; set; }
 
         public override string ToString()
         {
