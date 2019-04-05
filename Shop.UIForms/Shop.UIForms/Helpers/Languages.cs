@@ -40,6 +40,8 @@ namespace Shop.UIForms.Helpers
 
         public static string Remember => Resource.Remember;
 
+        public static string RegisterNewUser => Resource.RegisterNewUser;
+
 
     }
 

@@ -24,8 +24,14 @@ namespace Shop.UIForms.ViewModels
         public EditProductViewModel EditProduct { get; set; }
 
         public AddProductViewModel AddProduct { get; set; }
+
+        public RegisterViewModel Register { get; set; }
+
         public ICommand AddProductCommand => new RelayCommand(this.GoAddProduct);
         public TokenResponse Token { get; set; }
+
+       
+
 
         private async void GoAddProduct()
         {

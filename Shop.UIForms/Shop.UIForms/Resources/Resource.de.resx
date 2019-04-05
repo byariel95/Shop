@@ -156,4 +156,7 @@
   <data name="Remember" xml:space="preserve">
     <value>Auf diesem Gerät merken</value>
   </data>
+  <data name="RegisterNewUser" xml:space="preserve">
+    <value>Neuer Benutzer</value>
+  </data>
 </root>
