@@ -7,6 +7,7 @@ namespace Shop.UIForms.ViewModels
     using System.Windows.Input;
     using Common.Models;
     using GalaSoft.MvvmLight.Command;
+    using Shop.Common.Helpers;
     using Shop.Common.Services;
     using Xamarin.Forms;
 
@@ -113,7 +114,154 @@ namespace Shop.UIForms.ViewModels
 
         private async void Register()
         {
+            if (string.IsNullOrEmpty(this.FirstName))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must enter the first name.",
+                    "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.LastName))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must enter the last name.",
+                    "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.Email))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must enter an email.",
+                    "Accept");
+                return;
+            }
+
+            if (!RegexHelper.IsValidEmail(this.Email))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must enter a valid email.",
+                    "Accept");
+                return;
+            }
+
+            if (this.Country == null)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must select a country.",
+                    "Accept");
+                return;
+            }
+
+            if (this.City == null)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must select a city.",
+                    "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.Address))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must enter an address.",
+                    "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.Phone))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must enter a phone number.",
+                    "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.Password))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must enter a password.",
+                    "Accept");
+                return;
+            }
+
+            if (this.Password.Length < 6)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You password must be at mimimun 6 characters.",
+                    "Accept");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(this.Confirm))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must enter a password confirm.",
+                    "Accept");
+                return;
+            }
+
+            if (!this.Password.Equals(this.Confirm))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "The password and the confirm do not match.",
+                    "Accept");
+                return;
+            }
+
+            this.IsRunning = true;
+            this.IsEnabled = false;
+
+            var request = new NewUserRequest
+            {
+                Address = this.Address,
+                CityId = this.City.Id,
+                Email = this.Email,
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                Password = this.Password,
+                Phone = this.Phone
+            };
+
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var response = await this.apiService.RegisterUserAsync(
+                url,
+                "/api",
+                "/Account",
+                request);
+
+            this.IsRunning = false;
+            this.IsEnabled = true;
+
+            if (!response.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    response.Message,
+                    "Accept");
+                return;
+            }
+
+            await Application.Current.MainPage.DisplayAlert(
+                "Ok",
+                response.Message,
+                "Accept");
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
+
     }
 
 }
