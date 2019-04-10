@@ -159,4 +159,7 @@
   <data name="RegisterNewUser" xml:space="preserve">
     <value>Novo Usuário</value>
   </data>
+  <data name="Forgot" xml:space="preserve">
+    <value>Esqueci minha Senha!</value>
+  </data>
 </root>
