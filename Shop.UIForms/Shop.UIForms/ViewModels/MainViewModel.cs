@@ -12,10 +12,13 @@ namespace Shop.UIForms.ViewModels
     public class MainViewModel
     {
         private static MainViewModel instance;
+        public User User { get; set; }
 
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
         public LoginViewModel Login { get; set; }
         public ProductsViewModel Products { get; set; }
+
+        public ProfileViewModel Profile { get; set; }
 
         public string UserEmail { get; set; }
 
@@ -56,6 +59,12 @@ namespace Shop.UIForms.ViewModels
             Icon = "ic_info",
             PageName = "AboutPage",
             Title = "About"
+        },
+        new Menu
+        {
+            Icon = "ic_person",
+            PageName = "ProfilePage",
+            Title = "Modify User"
         },
 
         new Menu

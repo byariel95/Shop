@@ -170,4 +170,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\ic_phonelink_setup.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_person.png" />
+  </ItemGroup>
 </Project>
