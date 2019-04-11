@@ -10,6 +10,7 @@ namespace Shop.UIForms.ViewModels
     using GalaSoft.MvvmLight.Command;
     using Newtonsoft.Json;
     using Shop.Common.Helpers;
+    using Shop.UIForms.Views;
     using Xamarin.Forms;
 
     public class ProfileViewModel : BaseViewModel
@@ -71,6 +72,9 @@ namespace Shop.UIForms.ViewModels
         }
 
         public ICommand SaveCommand => new RelayCommand(this.Save);
+
+        public ICommand ModifyPasswordCommand => new RelayCommand(this.ModifyPassword);
+
         public ProfileViewModel()
         {
             this.apiService = new ApiService();
@@ -209,6 +213,12 @@ namespace Shop.UIForms.ViewModels
                 "User updated!",
                 "Accept");
             await App.Navigator.PopAsync();
+        }
+
+        private async void ModifyPassword()
+        {
+            MainViewModel.GetInstance().ChangePassword = new ChangePasswordViewModel();
+            await App.Navigator.PushAsync(new ChangePasswordPage());
         }
 
     }

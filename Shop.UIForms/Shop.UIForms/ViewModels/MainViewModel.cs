@@ -32,6 +32,9 @@ namespace Shop.UIForms.ViewModels
 
         public RememberPasswordViewModel RememberPassword { get; set; }
 
+        public ChangePasswordViewModel ChangePassword { get; set; }
+
+
         public ICommand AddProductCommand => new RelayCommand(this.GoAddProduct);
         public TokenResponse Token { get; set; }
 
