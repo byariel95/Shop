@@ -6,34 +6,24 @@ namespace Shop.UIForms.ViewModels
     using System.Linq;
     using System.Windows.Input;
     using Common.Models;
+    using Common.Services;
     using GalaSoft.MvvmLight.Command;
+    using Newtonsoft.Json;
     using Shop.Common.Helpers;
-    using Shop.Common.Services;
+    using Shop.UIForms.Views;
     using Xamarin.Forms;
 
-    public class RegisterViewModel : BaseViewModel
+    public class ProfileViewModel : BaseViewModel
     {
+        private readonly ApiService apiService;
         private bool isRunning;
         private bool isEnabled;
         private ObservableCollection<Country> countries;
         private Country country;
         private ObservableCollection<City> cities;
         private City city;
-        private readonly ApiService apiService;
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string Email { get; set; }
-
-        public string Address { get; set; }
-
-        public string Phone { get; set; }
-
-        public string Password { get; set; }
-
-        public string Confirm { get; set; }
+        private User user;
+        private List<Country> myCountries;
 
         public Country Country
         {
@@ -43,13 +33,18 @@ namespace Shop.UIForms.ViewModels
                 this.SetValue(ref this.country, value);
                 this.Cities = new ObservableCollection<City>(this.Country.Cities.OrderBy(c => c.Name));
             }
-
         }
 
         public City City
         {
             get => this.city;
             set => this.SetValue(ref this.city, value);
+        }
+
+        public User User
+        {
+            get => this.user;
+            set => this.SetValue(ref this.user, value);
         }
 
         public ObservableCollection<Country> Countries
@@ -76,11 +71,14 @@ namespace Shop.UIForms.ViewModels
             set => this.SetValue(ref this.isEnabled, value);
         }
 
-        public ICommand RegisterCommand => new RelayCommand(this.Register);
+        public ICommand SaveCommand => new RelayCommand(this.Save);
 
-        public RegisterViewModel()
+        public ICommand ModifyPasswordCommand => new RelayCommand(this.ModifyPassword);
+
+        public ProfileViewModel()
         {
             this.apiService = new ApiService();
+            this.User = MainViewModel.GetInstance().User;
             this.IsEnabled = true;
             this.LoadCountries();
         }
@@ -108,13 +106,28 @@ namespace Shop.UIForms.ViewModels
                 return;
             }
 
-            var myCountries = (List<Country>)response.Result;
+            this.myCountries = (List<Country>)response.Result;
             this.Countries = new ObservableCollection<Country>(myCountries);
+            this.SetCountryAndCity();
         }
 
-        private async void Register()
+        private void SetCountryAndCity()
         {
-            if (string.IsNullOrEmpty(this.FirstName))
+            foreach (var country in this.myCountries)
+            {
+                var city = country.Cities.Where(c => c.Id == this.User.CityId).FirstOrDefault();
+                if (city != null)
+                {
+                    this.Country = country;
+                    this.City = city;
+                    return;
+                }
+            }
+        }
+
+        private async void Save()
+        {
+            if (string.IsNullOrEmpty(this.User.FirstName))
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -123,29 +136,11 @@ namespace Shop.UIForms.ViewModels
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.LastName))
+            if (string.IsNullOrEmpty(this.User.LastName))
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
                     "You must enter the last name.",
-                    "Accept");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(this.Email))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter an email.",
-                    "Accept");
-                return;
-            }
-
-            if (!RegexHelper.IsValidEmail(this.Email))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a valid email.",
                     "Accept");
                 return;
             }
@@ -168,7 +163,7 @@ namespace Shop.UIForms.ViewModels
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.Address))
+            if (string.IsNullOrEmpty(this.User.Address))
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -177,7 +172,7 @@ namespace Shop.UIForms.ViewModels
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.Phone))
+            if (string.IsNullOrEmpty(this.User.PhoneNumber))
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -186,62 +181,17 @@ namespace Shop.UIForms.ViewModels
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.Password))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a password.",
-                    "Accept");
-                return;
-            }
-
-            if (this.Password.Length < 6)
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You password must be at mimimun 6 characters.",
-                    "Accept");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(this.Confirm))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a password confirm.",
-                    "Accept");
-                return;
-            }
-
-            if (!this.Password.Equals(this.Confirm))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "The password and the confirm do not match.",
-                    "Accept");
-                return;
-            }
-
             this.IsRunning = true;
             this.IsEnabled = false;
 
-            var request = new NewUserRequest
-            {
-                Address = this.Address,
-                CityId = this.City.Id,
-                Email = this.Email,
-                FirstName = this.FirstName,
-                LastName = this.LastName,
-                Password = this.Password,
-                Phone = this.Phone
-            };
-
             var url = Application.Current.Resources["UrlAPI"].ToString();
-            var response = await this.apiService.RegisterUserAsync(
+            var response = await this.apiService.PutAsync(
                 url,
                 "/api",
                 "/Account",
-                request);
+                this.User,
+                "bearer",
+                MainViewModel.GetInstance().Token.Token);
 
             this.IsRunning = false;
             this.IsEnabled = true;
@@ -255,11 +205,20 @@ namespace Shop.UIForms.ViewModels
                 return;
             }
 
+            MainViewModel.GetInstance().User = this.User;
+            Settings.User = JsonConvert.SerializeObject(this.User);
+
             await Application.Current.MainPage.DisplayAlert(
                 "Ok",
-                response.Message,
+                "User updated!",
                 "Accept");
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await App.Navigator.PopAsync();
+        }
+
+        private async void ModifyPassword()
+        {
+            MainViewModel.GetInstance().ChangePassword = new ChangePasswordViewModel();
+            await App.Navigator.PushAsync(new ChangePasswordPage());
         }
 
     }

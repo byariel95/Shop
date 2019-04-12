@@ -39,8 +39,8 @@ namespace Shop.UIForms.ViewModels
 
         public ICommand RegisterCommand => new RelayCommand(this.Register);
 
-        
 
+        public ICommand RememberPasswordCommand => new RelayCommand(this.RememberPassword);
 
         public LoginViewModel()
         {
@@ -89,7 +89,20 @@ namespace Shop.UIForms.ViewModels
             }
 
             var token = (TokenResponse)response.Result;
+
+            var response2 = await this.apiService.GetUserByEmailAsync(
+                url,
+                "/api",
+                "/Account/GetUserByEmail",
+                this.Email,
+                "bearer",
+                token.Token);
+
+            var user = (User)response2.Result;
+
+
             var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.User = user;
             mainViewModel.UserEmail = this.Email;
             mainViewModel.UserPassword = this.Password;
             mainViewModel.Token = token;
@@ -99,6 +112,7 @@ namespace Shop.UIForms.ViewModels
             Settings.UserEmail = this.Email;
             Settings.UserPassword = this.Password;
             Settings.Token = JsonConvert.SerializeObject(token);
+            Settings.User = JsonConvert.SerializeObject(user);
 
             Application.Current.MainPage = new MasterPage();
 
@@ -111,5 +125,12 @@ namespace Shop.UIForms.ViewModels
             MainViewModel.GetInstance().Register = new RegisterViewModel();
             await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
         }
+
+        private async void RememberPassword()
+        {
+            MainViewModel.GetInstance().RememberPassword = new RememberPasswordViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new RememberPasswordPage());
+        }
+
     }
 }
