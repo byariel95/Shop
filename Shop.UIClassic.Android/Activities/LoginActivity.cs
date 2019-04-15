@@ -11,6 +11,8 @@ namespace Shop.UIClassic.Android.Activities
     using Helpers;
     using global::Android.Views;
     using Common.Models;
+    using global::Android.Content;
+    using Newtonsoft.Json;
 
     [Activity(Label = "@string/login", Theme = "@style/AppTheme", MainLauncher = true)]
     public class LoginActivity : AppCompatActivity
@@ -81,7 +83,13 @@ namespace Shop.UIClassic.Android.Activities
                 return;
             }
 
-            DiaglogService.ShowMessage(this, "Ok", "Fuck Yeah!", "Accept");
+           
+            var token = (TokenResponse)response.Result;
+            var intent = new Intent(this, typeof(ProductsActivity));
+            intent.PutExtra("token", JsonConvert.SerializeObject(token));
+            intent.PutExtra("email", this.emailText.Text);
+            this.StartActivity(intent);
+
         }
 
         private void FindViews()
