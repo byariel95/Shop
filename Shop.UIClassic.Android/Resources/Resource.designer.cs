@@ -2227,8 +2227,26 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
+			// aapt resource value: 0x7f02006a
+			public const int avd_hide_password_1 = 2130837610;
+			
+			// aapt resource value: 0x7f02006b
+			public const int avd_hide_password_2 = 2130837611;
+			
+			// aapt resource value: 0x7f02006c
+			public const int avd_hide_password_3 = 2130837612;
+			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
+			
+			// aapt resource value: 0x7f02006d
+			public const int avd_show_password_1 = 2130837613;
+			
+			// aapt resource value: 0x7f02006e
+			public const int avd_show_password_2 = 2130837614;
+			
+			// aapt resource value: 0x7f02006f
+			public const int avd_show_password_3 = 2130837615;
 			
 			// aapt resource value: 0x7f020055
 			public const int design_bottom_navigation_item_background = 2130837589;
@@ -2324,8 +2342,8 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f080036
 			public const int SYM = 2131230774;
 			
-			// aapt resource value: 0x7f08009b
-			public const int action0 = 2131230875;
+			// aapt resource value: 0x7f08009f
+			public const int action0 = 2131230879;
 			
 			// aapt resource value: 0x7f08007b
 			public const int action_bar = 2131230843;
@@ -2348,17 +2366,17 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f080059
 			public const int action_bar_title = 2131230809;
 			
-			// aapt resource value: 0x7f080098
-			public const int action_container = 2131230872;
+			// aapt resource value: 0x7f08009c
+			public const int action_container = 2131230876;
 			
 			// aapt resource value: 0x7f08007c
 			public const int action_context_bar = 2131230844;
 			
-			// aapt resource value: 0x7f08009f
-			public const int action_divider = 2131230879;
+			// aapt resource value: 0x7f0800a3
+			public const int action_divider = 2131230883;
 			
-			// aapt resource value: 0x7f080099
-			public const int action_image = 2131230873;
+			// aapt resource value: 0x7f08009d
+			public const int action_image = 2131230877;
 			
 			// aapt resource value: 0x7f080003
 			public const int action_menu_divider = 2131230723;
@@ -2375,11 +2393,14 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f08005b
 			public const int action_mode_close_button = 2131230811;
 			
-			// aapt resource value: 0x7f08009a
-			public const int action_text = 2131230874;
+			// aapt resource value: 0x7f08009e
+			public const int action_text = 2131230878;
 			
-			// aapt resource value: 0x7f0800a8
-			public const int actions = 2131230888;
+			// aapt resource value: 0x7f0800ac
+			public const int actions = 2131230892;
+			
+			// aapt resource value: 0x7f08009a
+			public const int activityIndicatorProgressBar = 2131230874;
 			
 			// aapt resource value: 0x7f08005c
 			public const int activity_chooser_view_content = 2131230812;
@@ -2414,8 +2435,8 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f080062
 			public const int buttonPanel = 2131230818;
 			
-			// aapt resource value: 0x7f08009c
-			public const int cancel_action = 2131230876;
+			// aapt resource value: 0x7f0800a0
+			public const int cancel_action = 2131230880;
 			
 			// aapt resource value: 0x7f080044
 			public const int center = 2131230788;
@@ -2429,8 +2450,8 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f080072
 			public const int checkbox = 2131230834;
 			
-			// aapt resource value: 0x7f0800a4
-			public const int chronometer = 2131230884;
+			// aapt resource value: 0x7f0800a8
+			public const int chronometer = 2131230888;
 			
 			// aapt resource value: 0x7f08004d
 			public const int clip_horizontal = 2131230797;
@@ -2483,11 +2504,14 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f08007d
 			public const int edit_query = 2131230845;
 			
+			// aapt resource value: 0x7f080098
+			public const int emailText = 2131230872;
+			
 			// aapt resource value: 0x7f08002f
 			public const int end = 2131230767;
 			
-			// aapt resource value: 0x7f0800aa
-			public const int end_padder = 2131230890;
+			// aapt resource value: 0x7f0800ae
+			public const int end_padder = 2131230894;
 			
 			// aapt resource value: 0x7f08003e
 			public const int enterAlways = 2131230782;
@@ -2531,8 +2555,8 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f080061
 			public const int icon = 2131230817;
 			
-			// aapt resource value: 0x7f0800a9
-			public const int icon_group = 2131230889;
+			// aapt resource value: 0x7f0800ad
+			public const int icon_group = 2131230893;
 			
 			// aapt resource value: 0x7f080039
 			public const int ifRoom = 2131230777;
@@ -2540,8 +2564,8 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f08005e
 			public const int image = 2131230814;
 			
-			// aapt resource value: 0x7f0800a5
-			public const int info = 2131230885;
+			// aapt resource value: 0x7f0800a9
+			public const int info = 2131230889;
 			
 			// aapt resource value: 0x7f080058
 			public const int italic = 2131230808;
@@ -2567,14 +2591,17 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f080060
 			public const int list_item = 2131230816;
 			
-			// aapt resource value: 0x7f0800ad
-			public const int masked = 2131230893;
+			// aapt resource value: 0x7f08009b
+			public const int loginButton = 2131230875;
 			
-			// aapt resource value: 0x7f08009e
-			public const int media_actions = 2131230878;
+			// aapt resource value: 0x7f0800b1
+			public const int masked = 2131230897;
 			
-			// aapt resource value: 0x7f0800ab
-			public const int message = 2131230891;
+			// aapt resource value: 0x7f0800a2
+			public const int media_actions = 2131230882;
+			
+			// aapt resource value: 0x7f0800af
+			public const int message = 2131230895;
 			
 			// aapt resource value: 0x7f080030
 			public const int middle = 2131230768;
@@ -2597,14 +2624,14 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f08001d
 			public const int normal = 2131230749;
 			
-			// aapt resource value: 0x7f0800a7
-			public const int notification_background = 2131230887;
+			// aapt resource value: 0x7f0800ab
+			public const int notification_background = 2131230891;
 			
-			// aapt resource value: 0x7f0800a1
-			public const int notification_main_column = 2131230881;
+			// aapt resource value: 0x7f0800a5
+			public const int notification_main_column = 2131230885;
 			
-			// aapt resource value: 0x7f0800a0
-			public const int notification_main_column_container = 2131230880;
+			// aapt resource value: 0x7f0800a4
+			public const int notification_main_column_container = 2131230884;
 			
 			// aapt resource value: 0x7f08004b
 			public const int parallax = 2131230795;
@@ -2614,6 +2641,9 @@ namespace Shop.UIClassic.Android
 			
 			// aapt resource value: 0x7f08000b
 			public const int parent_matrix = 2131230731;
+			
+			// aapt resource value: 0x7f080099
+			public const int passwordText = 2131230873;
 			
 			// aapt resource value: 0x7f08004c
 			public const int pin = 2131230796;
@@ -2630,11 +2660,11 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f080049
 			public const int right = 2131230793;
 			
-			// aapt resource value: 0x7f0800a6
-			public const int right_icon = 2131230886;
+			// aapt resource value: 0x7f0800aa
+			public const int right_icon = 2131230890;
 			
-			// aapt resource value: 0x7f0800a2
-			public const int right_side = 2131230882;
+			// aapt resource value: 0x7f0800a6
+			public const int right_side = 2131230886;
 			
 			// aapt resource value: 0x7f08000c
 			public const int save_image_matrix = 2131230732;
@@ -2738,8 +2768,8 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f08004a
 			public const int start = 2131230794;
 			
-			// aapt resource value: 0x7f08009d
-			public const int status_bar_latest_event_content = 2131230877;
+			// aapt resource value: 0x7f0800a1
+			public const int status_bar_latest_event_content = 2131230881;
 			
 			// aapt resource value: 0x7f080075
 			public const int submenuarrow = 2131230837;
@@ -2771,8 +2801,8 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f080015
 			public const int textinput_error = 2131230741;
 			
-			// aapt resource value: 0x7f0800a3
-			public const int time = 2131230883;
+			// aapt resource value: 0x7f0800a7
+			public const int time = 2131230887;
 			
 			// aapt resource value: 0x7f08001b
 			public const int title = 2131230747;
@@ -2819,8 +2849,8 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f080016
 			public const int view_offset_helper = 2131230742;
 			
-			// aapt resource value: 0x7f0800ac
-			public const int visible = 2131230892;
+			// aapt resource value: 0x7f0800b0
+			public const int visible = 2131230896;
 			
 			// aapt resource value: 0x7f08003b
 			public const int withText = 2131230779;
@@ -2966,49 +2996,49 @@ namespace Shop.UIClassic.Android
 			public const int abc_select_dialog_material = 2130968602;
 			
 			// aapt resource value: 0x7f04001b
-			public const int activity_main = 2130968603;
+			public const int design_bottom_navigation_item = 2130968603;
 			
 			// aapt resource value: 0x7f04001c
-			public const int design_bottom_navigation_item = 2130968604;
+			public const int design_bottom_sheet_dialog = 2130968604;
 			
 			// aapt resource value: 0x7f04001d
-			public const int design_bottom_sheet_dialog = 2130968605;
+			public const int design_layout_snackbar = 2130968605;
 			
 			// aapt resource value: 0x7f04001e
-			public const int design_layout_snackbar = 2130968606;
+			public const int design_layout_snackbar_include = 2130968606;
 			
 			// aapt resource value: 0x7f04001f
-			public const int design_layout_snackbar_include = 2130968607;
+			public const int design_layout_tab_icon = 2130968607;
 			
 			// aapt resource value: 0x7f040020
-			public const int design_layout_tab_icon = 2130968608;
+			public const int design_layout_tab_text = 2130968608;
 			
 			// aapt resource value: 0x7f040021
-			public const int design_layout_tab_text = 2130968609;
+			public const int design_menu_item_action_area = 2130968609;
 			
 			// aapt resource value: 0x7f040022
-			public const int design_menu_item_action_area = 2130968610;
+			public const int design_navigation_item = 2130968610;
 			
 			// aapt resource value: 0x7f040023
-			public const int design_navigation_item = 2130968611;
+			public const int design_navigation_item_header = 2130968611;
 			
 			// aapt resource value: 0x7f040024
-			public const int design_navigation_item_header = 2130968612;
+			public const int design_navigation_item_separator = 2130968612;
 			
 			// aapt resource value: 0x7f040025
-			public const int design_navigation_item_separator = 2130968613;
+			public const int design_navigation_item_subheader = 2130968613;
 			
 			// aapt resource value: 0x7f040026
-			public const int design_navigation_item_subheader = 2130968614;
+			public const int design_navigation_menu = 2130968614;
 			
 			// aapt resource value: 0x7f040027
-			public const int design_navigation_menu = 2130968615;
+			public const int design_navigation_menu_item = 2130968615;
 			
 			// aapt resource value: 0x7f040028
-			public const int design_navigation_menu_item = 2130968616;
+			public const int design_text_input_password_icon = 2130968616;
 			
 			// aapt resource value: 0x7f040029
-			public const int design_text_input_password_icon = 2130968617;
+			public const int LoginPage = 2130968617;
 			
 			// aapt resource value: 0x7f04002a
 			public const int notification_action = 2130968618;
@@ -3198,8 +3228,8 @@ namespace Shop.UIClassic.Android
 			// aapt resource value: 0x7f090012
 			public const int abc_toolbar_collapse_description = 2131296274;
 			
-			// aapt resource value: 0x7f09002a
-			public const int action_settings = 2131296298;
+			// aapt resource value: 0x7f09002b
+			public const int action_settings = 2131296299;
 			
 			// aapt resource value: 0x7f090029
 			public const int app_name = 2131296297;
@@ -3212,6 +3242,9 @@ namespace Shop.UIClassic.Android
 			
 			// aapt resource value: 0x7f090023
 			public const int character_counter_pattern = 2131296291;
+			
+			// aapt resource value: 0x7f09002a
+			public const int login = 2131296298;
 			
 			// aapt resource value: 0x7f090024
 			public const int password_toggle_content_description = 2131296292;
