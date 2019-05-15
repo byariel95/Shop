@@ -13,7 +13,7 @@ namespace Shop.Common.Services
     using System.Net.Http.Headers;
     using System.Text;
 
-    public class ApiService
+    public class ApiService : IApiService
     {
         public async Task<Response> GetListAsync<T>(string urlBase, string servicePrefix, string controller)
         {
