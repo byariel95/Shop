@@ -3,6 +3,7 @@
 namespace Shop.Common.ViewModels
 {
     using System.Collections.Generic;
+    using System.Linq;
     using Helpers;
     using Interfaces;
     using Models;
@@ -48,6 +49,7 @@ namespace Shop.Common.ViewModels
             }
 
             this.Products = (List<Product>)response.Result;
+            this.products = this.products.OrderBy(p => p.Name).ToList();
         }
     }
 

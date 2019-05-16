@@ -6,8 +6,11 @@ namespace Shop.Common.ViewModels
     using Interfaces;
     using Models;
     using MvvmCross.Commands;
+    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
+    using Newtonsoft.Json;
     using Services;
+    using Shop.Common.Helpers;
 
     public class LoginViewModel : MvxViewModel
     {
@@ -16,6 +19,7 @@ namespace Shop.Common.ViewModels
         private MvxCommand loginCommand;
         private readonly IApiService apiService;
         private readonly IDialogService dialogService;
+        private readonly IMvxNavigationService navigationService;
         private bool isLoading;
 
         public bool IsLoading
@@ -47,11 +51,12 @@ namespace Shop.Common.ViewModels
 
         public LoginViewModel(
             IApiService apiService,
-            IDialogService dialogService)
+            IDialogService dialogService,
+            IMvxNavigationService navigationService)
         {
             this.apiService = apiService;
             this.dialogService = dialogService;
-
+            this.navigationService = navigationService;
             this.Email = "jzuluaga55@gmail.com";
             this.Password = "123456";
             this.IsLoading = false;
@@ -92,8 +97,12 @@ namespace Shop.Common.ViewModels
                 return;
             }
 
+            var token = (TokenResponse)response.Result;
+            Settings.UserEmail = this.Email;
+            Settings.Token = JsonConvert.SerializeObject(token);
             this.IsLoading = false;
-            this.dialogService.Alert("Ok", "Fuck yeah!", "Accept");
+            await this.navigationService.Navigate<ProductsViewModel>();
+
         }
     }
 
