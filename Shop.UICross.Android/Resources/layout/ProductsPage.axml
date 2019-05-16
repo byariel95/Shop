@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:local="http://schemas.android.com/apk/res-auto"
-	android:orientation="vertical"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<android.support.design.widget.FloatingActionButton
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_gravity="end|bottom"
+    	android:src="@drawable/ic_add"
+    	android:layout_margin="20dp"
+    	local:layout_anchorGravity="bottom|right|end"
+    	local:MvxBind="Click AddProductCommand" />
 	<MvxListView
     	android:layout_width="fill_parent"
     	android:layout_height="fill_parent"
     	local:MvxBind="ItemsSource Products"
     	local:MvxItemTemplate="@layout/productrow"/>
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
+

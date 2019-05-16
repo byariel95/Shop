@@ -4,9 +4,12 @@ namespace Shop.Common.ViewModels
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows.Input;
     using Helpers;
     using Interfaces;
     using Models;
+    using MvvmCross.Commands;
+    using MvvmCross.Navigation;
     using MvvmCross.ViewModels;
     using Newtonsoft.Json;
     using Services;
@@ -16,6 +19,19 @@ namespace Shop.Common.ViewModels
         private List<Product> products;
         private readonly IApiService apiService;
         private readonly IDialogService dialogService;
+        private readonly IMvxNavigationService navigationService;
+        private MvxCommand addProductCommand;
+
+        public ICommand AddProductCommand
+        {
+            get
+            {
+                this.addProductCommand = this.addProductCommand ?? new MvxCommand(this.AddProduct);
+                return this.addProductCommand;
+            }
+        }
+
+        
 
         public List<Product> Products
         {
@@ -25,11 +41,18 @@ namespace Shop.Common.ViewModels
 
         public ProductsViewModel(
             IApiService apiService,
-            IDialogService dialogService)
+            IDialogService dialogService, 
+            IMvxNavigationService navigationService)
         {
             this.apiService = apiService;
             this.dialogService = dialogService;
+            this.navigationService = navigationService;
             this.LoadProducts();
+        }
+
+        private async void AddProduct()
+        {
+            await this.navigationService.Navigate<AddProductViewModel>();
         }
 
         private async void LoadProducts()
