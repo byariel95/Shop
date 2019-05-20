@@ -64,6 +64,7 @@
     <Compile Include="Views\AddProductView.cs" />
     <Compile Include="Views\LoginView.cs" />
     <Compile Include="Views\ProductsView.cs" />
+    <Compile Include="Views\RegisterView.cs" />
     <Compile Include="Views\SplashView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +127,9 @@
     <PackageReference Include="MvvmCross.Plugin.Visibility">
       <Version>6.2.3</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.Constraint.Layout">
+      <Version>1.1.2</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design">
       <Version>28.0.0.1</Version>
     </PackageReference>
@@ -154,6 +158,20 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\AddProductPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\primary_button.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\secondary_button.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\danger_button.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\RegisterPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

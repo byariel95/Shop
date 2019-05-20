@@ -22,6 +22,18 @@ namespace Shop.Common.ViewModels
         private readonly IMvxNavigationService navigationService;
         private MvxCommand addProductCommand;
 
+
+        public ProductsViewModel(
+           IApiService apiService,
+           IDialogService dialogService,
+           IMvxNavigationService navigationService)
+        {
+            this.apiService = apiService;
+            this.dialogService = dialogService;
+            this.navigationService = navigationService;
+            this.LoadProducts();
+        }
+
         public ICommand AddProductCommand
         {
             get
@@ -39,16 +51,13 @@ namespace Shop.Common.ViewModels
             set => this.SetProperty(ref this.products, value);
         }
 
-        public ProductsViewModel(
-            IApiService apiService,
-            IDialogService dialogService, 
-            IMvxNavigationService navigationService)
+        public override void ViewAppeared()
         {
-            this.apiService = apiService;
-            this.dialogService = dialogService;
-            this.navigationService = navigationService;
+            base.ViewAppeared();
             this.LoadProducts();
         }
+
+
 
         private async void AddProduct()
         {

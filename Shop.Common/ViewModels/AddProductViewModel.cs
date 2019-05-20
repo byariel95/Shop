@@ -108,7 +108,7 @@ namespace Shop.Common.ViewModels
                 return;
             }
 
-            await this.navigationService.Navigate<ProductsViewModel>();
+            await this.navigationService.Close(this);
         }
     }
 

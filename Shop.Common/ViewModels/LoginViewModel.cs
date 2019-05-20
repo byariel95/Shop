@@ -17,10 +17,24 @@ namespace Shop.Common.ViewModels
         private string email;
         private string password;
         private MvxCommand loginCommand;
+        private MvxCommand registerCommand;
         private readonly IApiService apiService;
         private readonly IDialogService dialogService;
         private readonly IMvxNavigationService navigationService;
         private bool isLoading;
+
+        public LoginViewModel(
+           IApiService apiService,
+           IDialogService dialogService,
+           IMvxNavigationService navigationService)
+        {
+            this.apiService = apiService;
+            this.dialogService = dialogService;
+            this.navigationService = navigationService;
+            this.Email = "jzuluaga55@gmail.com";
+            this.Password = "123456";
+            this.IsLoading = false;
+        }
 
         public bool IsLoading
         {
@@ -49,18 +63,21 @@ namespace Shop.Common.ViewModels
             }
         }
 
-        public LoginViewModel(
-            IApiService apiService,
-            IDialogService dialogService,
-            IMvxNavigationService navigationService)
+        public ICommand RegisterCommand
         {
-            this.apiService = apiService;
-            this.dialogService = dialogService;
-            this.navigationService = navigationService;
-            this.Email = "jzuluaga55@gmail.com";
-            this.Password = "123456";
-            this.IsLoading = false;
+            get
+            {
+                this.registerCommand = this.registerCommand ?? new MvxCommand(this.DoRegisterCommand);
+                return this.registerCommand;
+            }
         }
+
+        private async void DoRegisterCommand()
+        {
+            await this.navigationService.Navigate<RegisterViewModel>();
+        }
+
+
 
         private async void DoLoginCommand()
         {
