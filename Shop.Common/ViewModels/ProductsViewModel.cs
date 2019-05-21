@@ -21,6 +21,7 @@ namespace Shop.Common.ViewModels
         private readonly IDialogService dialogService;
         private readonly IMvxNavigationService navigationService;
         private MvxCommand addProductCommand;
+        private MvxCommand<Product> itemClickCommand;
 
 
         public ProductsViewModel(
@@ -43,7 +44,16 @@ namespace Shop.Common.ViewModels
             }
         }
 
-        
+        public ICommand ItemClickCommand
+        {
+            get
+            {
+                this.itemClickCommand = new MvxCommand<Product>(this.OnItemClickCommand);
+                return itemClickCommand;
+            }
+        }
+
+       
 
         public List<Product> Products
         {
@@ -57,7 +67,10 @@ namespace Shop.Common.ViewModels
             this.LoadProducts();
         }
 
-
+        private async void OnItemClickCommand(Product product)
+        {
+            await this.navigationService.Navigate<ProductsDetailViewModel, NavigationArgs>(new NavigationArgs { Product = product });
+        }
 
         private async void AddProduct()
         {

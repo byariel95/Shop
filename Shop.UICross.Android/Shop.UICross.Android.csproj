@@ -63,6 +63,7 @@
     <Compile Include="Setup.cs" />
     <Compile Include="Views\AddProductView.cs" />
     <Compile Include="Views\LoginView.cs" />
+    <Compile Include="Views\ProductDetailView.cs" />
     <Compile Include="Views\ProductsView.cs" />
     <Compile Include="Views\RegisterView.cs" />
     <Compile Include="Views\SplashView.cs" />
@@ -124,6 +125,12 @@
     <PackageReference Include="MvvmCross">
       <Version>6.2.3</Version>
     </PackageReference>
+    <PackageReference Include="MvvmCross.Droid.Support.V7.AppCompat">
+      <Version>6.2.3</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Droid.Support.V7.RecyclerView">
+      <Version>6.2.3</Version>
+    </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Visibility">
       <Version>6.2.3</Version>
     </PackageReference>
@@ -131,6 +138,9 @@
       <Version>1.1.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design">
+      <Version>28.0.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Support.v7.CardView">
       <Version>28.0.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.FFImageLoading">
@@ -172,6 +182,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\RegisterPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ProductDetailPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
