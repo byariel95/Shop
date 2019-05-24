@@ -10,12 +10,14 @@ namespace Shop.UICross.Android
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    
 
     public class Setup : MvxAndroidSetup<App>
     {
         protected override void InitializeFirstChance()
         {
             Mvx.IoCProvider.RegisterType<IDialogService, DialogService>();
+            Mvx.LazyConstructAndRegisterSingleton<INetworkProvider, NetworkProvider>();
 
             base.InitializeFirstChance();
         }

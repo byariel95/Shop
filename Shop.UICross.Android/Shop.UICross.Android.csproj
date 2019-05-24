@@ -60,6 +60,7 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\NetworkProvider.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\AddProductView.cs" />
     <Compile Include="Views\LoginView.cs" />

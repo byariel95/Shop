@@ -21,16 +21,20 @@ namespace Shop.Common.ViewModels
         private readonly IApiService apiService;
         private readonly IDialogService dialogService;
         private readonly IMvxNavigationService navigationService;
+        private readonly INetworkProvider networkProvider;
         private bool isLoading;
 
         public LoginViewModel(
            IApiService apiService,
            IDialogService dialogService,
-           IMvxNavigationService navigationService)
+           IMvxNavigationService navigationService,
+           INetworkProvider networkProvider
+)
         {
             this.apiService = apiService;
             this.dialogService = dialogService;
             this.navigationService = navigationService;
+            this.networkProvider = networkProvider;
             this.Email = "jzuluaga55@gmail.com";
             this.Password = "123456";
             this.IsLoading = false;
@@ -92,6 +96,13 @@ namespace Shop.Common.ViewModels
                 this.dialogService.Alert("Error", "You must enter a password.", "Accept");
                 return;
             }
+
+            if (!this.networkProvider.IsConnectedToWifi())
+            {
+                this.dialogService.Alert("Error", "You need internet connection to enter to the App.", "Accept");
+                return;
+            }
+
 
             this.IsLoading = true;
 
